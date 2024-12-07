@@ -1,0 +1,42 @@
+{
+  "name": "rm-toast-notification",
+  "version": "1.0.0",
+  "description": "A lightweight and customizable toast notification service for displaying timed notifications in your web applications. Supports various styles, animations, and auto-dismiss functionality.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "test": "jest"
+  },
+"keywords": [
+    "toast",
+    "notification",
+    "web",
+    "alerts",
+    "frontend",
+    "javascript",
+    "toast-notification",
+    "react",
+    "angular",
+    "vanilla-js",
+    "custom-toast",
+    "UI",
+    "alert",
+    "message",
+    "popup",
+    "notification-system"
+  ],
+  "author": "Rajat Malik",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "dompurify": "^3.2.2"
+  }
+}
