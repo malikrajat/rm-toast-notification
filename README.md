@@ -67,19 +67,19 @@ toastService.showToast({
 
 ### 🔹 Available Options
 
-| **Option**        | **Type**    | **Description**                                                                                       | **Default**      |
-|-------------------|-------------|-------------------------------------------------------------------------------------------------------|------------------|
-| `type`            | `string`    | Notification type. Available options: `success`, `error`, `warning`, `info`.                        | `info`           |
-| `position`        | `string`    | Position of the toast on the screen. Available options: `top-left`, `top-right`, `bottom-left`, `bottom-right`. | `top-right`      |
-| `duration`        | `number`    | Duration in milliseconds to show the toast. Set to `null` for a permanent toast.                     | `3000`           |
-| `header`          | `string`    | The header text for the notification. (Optional)                                                    |                  |
-| `body`            | `string`    | The body content. Can be plain text or sanitized HTML.                                               |                  |
-| `footer`          | `string`    | The footer text. (Optional)                                                                         |                  |
-| `logo`            | `string`    | URL of the logo image. (Optional)                                                                   |                  |
-| `color`           | `string`    | Custom background color. (Optional)                                                                 |                  |
-| `onClick`         | `function`  | Custom click event handler for the notification. (Optional)                                         |                  |
-| `actionButton`    | `object`    | Custom action button with `text` and `onClick` function. (Optional)                                 |                  |
-| `animation`       | `boolean`   | Enable or disable animation for showing the toast.                                                  | `true`           |
+| **Option**     | **Type**   | **Description**                                                                                                 | **Default** |
+|----------------|------------|-----------------------------------------------------------------------------------------------------------------|-------------|
+| `type`         | `string`   | Notification type. Available options: `success`, `error`, `warning`, `info`.                                    | `info`      |
+| `position`     | `string`   | Position of the toast on the screen. Available options: `top-left`, `top-right`, `bottom-left`, `bottom-right`. | `top-right` |
+| `duration`     | `number`   | Duration in milliseconds to show the toast. Set to `null` for a permanent toast.                                | `3000`      |
+| `header`       | `string`   | The header text for the notification. (Optional)                                                                |             |
+| `body`         | `string`   | The body content. Can be plain text or sanitized HTML.                                                          |             |
+| `footer`       | `string`   | The footer text. (Optional)                                                                                     |             |
+| `logo`         | `string`   | URL of the logo image. (Optional)                                                                               |             |
+| `color`        | `string`   | Custom background color. (Optional)                                                                             |             |
+| `onClick`      | `function` | Custom click event handler for the notification. (Optional)                                                     |             |
+| `actionButton` | `object`   | Custom action button with `text` and `onClick` function. (Optional)                                             |             |
+| `animation`    | `boolean`  | Enable or disable animation for showing the toast.                                                              | `true`      |
 
 ### 🔹 Example with Action Button
 
