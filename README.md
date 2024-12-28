@@ -1,5 +1,4 @@
-
-# Toast Notification Service
+# ⭐ Toast Notification Service
 
 [![npm version](https://img.shields.io/npm/v/colorful-console-logger.svg)](https://www.npmjs.com/package/colorful-console-logger)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
@@ -7,7 +6,6 @@
 A lightweight, customizable, and easy-to-use toast notification service for web applications. This library provides a flexible way to display timed notifications with various styles, animations, and auto-dismiss functionality. Ideal for adding non-intrusive alerts and messages to your web applications.
 
 ---
-
 
 ## 🚀 Features
 
@@ -39,7 +37,7 @@ Or with Yarn:
 
 ## 🛠️ Usage
 
-### Basic Usage
+### 🔹 Basic Usage
 Create a service and reuse it.
 
 ```javascript
@@ -67,21 +65,23 @@ toastService.showToast({
 });
 ```
 
-### Available Options
+### 🔹 Available Options
 
-- **`type`** (string): Notification type. Available options: `success`, `error`, `warning`, `info`. Default is `info`.
-- **`position`** (string): Position of the toast on the screen. Available options: `top-left`, `top-right`, `bottom-left`, `bottom-right`. Default is `top-right`.
-- **`duration`** (number|null): The duration in milliseconds to show the toast. Set to `null` for a permanent toast that needs to be dismissed manually. Default is `3000`.
-- **`header`** (string): The header text for the notification (optional).
-- **`body`** (string): The body content. You can pass plain text or HTML (HTML will be sanitized).
-- **`footer`** (string): The footer text (optional).
-- **`logo`** (string): URL of the logo image (optional).
-- **`color`** (string): Custom background color (optional).
-- **`onClick`** (function): Custom click event handler for the notification (optional).
-- **`actionButton`** (object): Custom action button with `text` and `onClick` function (optional).
-- **`animation`** (boolean): Enable or disable animation for showing the toast (optional, default is `true`).
+| **Option**        | **Type**    | **Description**                                                                                       | **Default**      |
+|-------------------|-------------|-------------------------------------------------------------------------------------------------------|------------------|
+| `type`            | `string`    | Notification type. Available options: `success`, `error`, `warning`, `info`.                        | `info`           |
+| `position`        | `string`    | Position of the toast on the screen. Available options: `top-left`, `top-right`, `bottom-left`, `bottom-right`. | `top-right`      |
+| `duration`        | `number`    | Duration in milliseconds to show the toast. Set to `null` for a permanent toast.                     | `3000`           |
+| `header`          | `string`    | The header text for the notification. (Optional)                                                    |                  |
+| `body`            | `string`    | The body content. Can be plain text or sanitized HTML.                                               |                  |
+| `footer`          | `string`    | The footer text. (Optional)                                                                         |                  |
+| `logo`            | `string`    | URL of the logo image. (Optional)                                                                   |                  |
+| `color`           | `string`    | Custom background color. (Optional)                                                                 |                  |
+| `onClick`         | `function`  | Custom click event handler for the notification. (Optional)                                         |                  |
+| `actionButton`    | `object`    | Custom action button with `text` and `onClick` function. (Optional)                                 |                  |
+| `animation`       | `boolean`   | Enable or disable animation for showing the toast.                                                  | `true`           |
 
-### Example with Action Button
+### 🔹 Example with Action Button
 
 ```javascript
 toastService.showToast({
@@ -97,7 +97,7 @@ toastService.showToast({
 });
 ```
 
-### Example with HTML Content
+### 🔹 Example with HTML Content
 
 ```javascript
 toastService.showToast({
@@ -120,7 +120,7 @@ This library works seamlessly in:
 
 ---
 
-## Browser Support
+## 🔏 Browser Support
 
 This library is designed to work in modern browsers. It supports the following browsers:
 
@@ -128,6 +128,7 @@ This library is designed to work in modern browsers. It supports the following b
 - Firefox
 - Safari
 - Edge
+
 ---
 
 ## 🛡️ Security
@@ -136,27 +137,27 @@ This library does not store or expose any sensitive information. It is designed 
 
 ---
 
-## 📄 License
+## 🔖 License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## Issues
+## 🚨 Issues
 
 If you identify any errors in this component, or have an idea for an improvement, please open
 an [issue](https://github.com/malikrajat/rm-toast-notification/issues). I am excited to see what the community thinks of this
 project, and I would love your input!
+
 ---
 
-## Author services
+## 💎 Author Services
 
 Are you interested in this library but lacks features? Write to the author, he can do it for you.
 
 ---
 
-
-## Author
+## 👤 Author
 
 **Rajat Malik**
 
@@ -164,7 +165,7 @@ Are you interested in this library but lacks features? Write to the author, he c
 
 ---
 
-## Keywords
+## 📚 Keywords
 
 - toast
 - notification
@@ -178,4 +179,4 @@ Are you interested in this library but lacks features? Write to the author, he c
 - angular
 - vanilla-js
 - custom-toast
-----
+
