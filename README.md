@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/Coverage-90%25-success" alt="Coverage">
   <img src="https://img.shields.io/badge/A11y-WCAG%202.1-success" alt="Accessibility compliant">
   <img src="https://img.shields.io/badge/Dependencies-none-success" alt="No dependencies">
-  <img src="https://img.shields.io/npm/last-update/@codewithrajat/rm-ng-pdf-viewer" alt="Last update">
+  <img src="https://img.shields.io/npm/last-update/@codewithrajat/rm-toast-notification" alt="Last update">
   <img src="https://img.shields.io/badge/Maintained-yes-success" alt="Maintained">
   <img src="https://img.shields.io/badge/SemVer-compliant-blue" alt="SemVer">
 </p>
@@ -27,7 +27,10 @@
 ## See It In Action
 
 <div align="center">
-  <img src="https://github.com/malikrajat/rm-toast-notification/blob/main/assets/demo.gif" alt="rm-toast-notification" width="800"/>
+  <img src="https://github.com/malikrajat/rm-pushnotify/blob/main/assets/demo.png" alt="rm-pushnotify Demo" width="800"/>
+  <br/>
+  <img src="https://github.com/malikrajat/rm-pushnotify/blob/main/assets/demo-1.png" alt="rm-pushnotify Demo" width="800"/>
+
   <p><em>A lightweight, SSR-safe, signal-based Angular PDF viewer library built with Angular 21, signal-based architecture, and zoneless support.</em></p>
 </div>
 
@@ -86,7 +89,7 @@ It works in plain JavaScript, TypeScript, React, Angular, Vue, and Svelte.
     </tr>
     <tr>
       <td align="center" width="50%">
-        <a href="https://www.npmjs.com/package/@codewithrajat/rm-ng-pdf-viewer" target="_blank">
+        <a href="https://www.npmjs.com/package/@codewithrajat/rm-toast-notification" target="_blank">
           <img src="https://img.shields.io/badge/npm_Package-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm Package"/>
         </a>
         <br/><br/>
@@ -94,7 +97,7 @@ It works in plain JavaScript, TypeScript, React, Angular, Vue, and Svelte.
         <sub>Install and view package details</sub>
       </td>
       <td align="center" width="50%">
-        <a href="https://github.com/malikrajat/rm-ng-pdf-viewer" target="_blank">
+        <a href="https://github.com/malikrajat/rm-toast-notification" target="_blank">
           <img src="https://img.shields.io/badge/GitHub_Repo-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repository"/>
         </a>
         <br/><br/>
