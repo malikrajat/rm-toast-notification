@@ -31,18 +31,16 @@
   <br/>
   <img src="https://github.com/malikrajat/rm-pushnotify/blob/main/assets/demo-1.png" alt="rm-pushnotify Demo" width="800"/>
 
-  <p><em>A lightweight, SSR-safe, signal-based Angular PDF viewer library built with Angular 21, signal-based architecture, and zoneless support.</em></p>
+  <p><em>A lightweight, customizable, and secure toast notification library for web applications with auto-dismiss, custom colors, logos, action buttons, and built-in XSS protection.</em></p>
 </div>
 
 ---
 
 ## Overview
 
-A lightweight, customizable, and secure toast notification library for web applications.
-It helps you show short-lived messages with auto-dismiss, custom colors, logos, action buttons,
-animated positions, and built-in protection against XSS and CSS injection.
+**@codewithrajat/rm-toast-notification** is a lightweight, framework-agnostic toast notification library for modern web applications. It provides a zero-config, fully typed TypeScript API that works seamlessly with plain JavaScript, TypeScript, React, Angular, Vue, and Svelte.
 
-It works in plain JavaScript, TypeScript, React, Angular, Vue, and Svelte.
+Built with security and accessibility as first-class concerns, the library sanitizes all HTML content through DOMPurify, guards against XSS and CSS injection attacks, validates logo URLs and custom colors, and ships an accessible close button with proper ARIA labels.
 
 ---
 
@@ -126,6 +124,38 @@ It works in plain JavaScript, TypeScript, React, Angular, Vue, and Svelte.
 - CSS injection protection for body content and style values
 - Accessibility-friendly close button with aria label
 - Clear-all and destroy helpers for app teardown
+
+
+
+
+### Key Capabilities
+
+- **4 toast types** — `success`, `error`, `warning`, and `info`, each with a distinct default color
+- **4 screen positions** — `top-left`, `top-right`, `bottom-left`, and `bottom-right`
+- **Auto-dismiss** — configurable duration with a restart-safe timer; set `duration: 0` for persistent toasts
+- **Pause on hover** — the auto-dismiss timer pauses while the mouse is over a toast and resumes on leave, giving users time to read longer messages
+- **Rich content** — optional header, body, footer, and custom logo image per toast
+- **Action buttons** — attach a custom action button with its own click handler that never triggers the toast-level click
+- **Custom styling** — per-toast background colors with strict hex/rgb/rgba validation
+- **Toast-level click handling** — trigger a callback when the toast itself is clicked (button clicks are automatically excluded)
+- **Animated transitions** — slide-in/slide-out animations per position, toggleable via the `animation` option
+- **Hover feedback** — subtle scale and shadow effects on hover to signal interactivity
+- **Programmatic control** — `closeToast()`, `clearAll()`, and `destroy()` for full lifecycle management, ideal for SPA route changes and app teardown
+
+### Security Features
+
+- **XSS protection** — body HTML is sanitized through DOMPurify, stripping dangerous tags (`script`, `iframe`, `object`, `embed`, `link`, `meta`, `base`, `form`, `style`), inline style/class/id and event-handler attributes, and disabling data attributes
+- **CSS injection protection** — inline styles and `<style>` blocks are scrubbed; dangerous patterns such as `expression()`, `url(javascript:...)`, `@import`, `behavior`, and `-moz-binding` are removed
+- **URL validation** — logo URLs are restricted to `http:`, `https:`, and `data:` protocols only
+- **Color validation** — custom colors must match strict hex or rgb/rgba patterns
+- **Safe DOM insertion** — text fields (header, footer, close button, action button) use `textContent` rather than `innerHTML`
+
+### SSR & Compatibility
+
+- **SSR-safe** — gracefully no-ops when `document` or `document.body` is unavailable, preventing crashes during server-side rendering
+- **Container reuse** — a shared toast container is reused across instances to avoid DOM duplication
+- **Tree-shakable** — ESM module with `sideEffects: false` for optimal bundle sizes
+- **Modern browsers** — works in all evergreen browsers including Chrome, Firefox, Safari, and Edge
 
 ---
 
@@ -386,19 +416,71 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### What is rm-toast-notification?
 
-It is a lightweight, framework-agnostic toast notification library for web apps.
+It is a lightweight, framework-agnostic toast notification library for web apps, built with TypeScript and designed for zero-config usage. It supports plain JavaScript, React, Angular, Vue, and Svelte, and ships with full type definitions for TypeScript projects.
+
+### Does the library have dependencies?
+
+The library source imports a single runtime dependency, **DOMPurify**, which is used to sanitize HTML content before it is inserted into the DOM. There are no other runtime imports, keeping the bundle small and focused.
 
 ### Which frameworks does it support?
 
-It works with plain JavaScript, TypeScript, React, Angular, Vue, and Svelte.
+It works with plain JavaScript, TypeScript, React, Angular, Vue, and Svelte. Because the library is framework-agnostic and DOM-based, you can use it anywhere you have access to the DOM — including inside framework services, components, or utility modules.
+
+### How do I create a persistent toast that never auto-dismisses?
+
+Set `duration: 0` (or a negative value). The toast stays on screen until the user clicks the close button, clicks the toast body, or you call `clearAll()` / `destroy()` programmatically.
 
 ### Is it safe to render HTML in the body?
 
-Yes, but it is sanitized before being inserted into the DOM.
+Yes, but it is sanitized before being inserted into the DOM. The `body` option is passed through DOMPurify with dangerous tags (`script`, `iframe`, `object`, `embed`, `link`, `meta`, `base`, `form`, `style`) stripped, inline `style`/`class`/`id` and event-handler attributes removed, and data attributes disabled. You can safely pass simple rich content such as `<strong>`, `<em>`, or `<p>`.
+
+### Can I customize the look of a toast?
+
+Yes. Use the `color` option for custom background colors, the `logo` option for a custom icon/logo image, and the `body` option for safe HTML content. Header and footer text are inserted as plain text to prevent XSS. Custom colors must be valid hex (`#fff`, `#ffffff`, `#ffffffff`) or `rgb()`/`rgba()` values.
+
+### What happens when the user hovers over a toast?
+
+The auto-dismiss timer pauses while the mouse is over the toast and resumes when the mouse leaves. The toast also shows a subtle scale/shadow hover effect to signal interactivity. Hover handlers use `relatedTarget` checks so they don't fire incorrectly when moving between child elements.
+
+### Can I attach an action button to a toast?
+
+Yes. Use the `actionButton` option with `text` and `onClick`. The button's click handler fires independently, and clicks on the action button do not trigger the toast-level `onClick` or close the toast — preventing accidental dismissal while interacting with the button.
+
+### Can I trigger an action when the whole toast is clicked?
+
+Yes. Use the `onClick` option to provide a click handler for the toast itself. Clicks originating from buttons (the close button or action button) are automatically excluded so they don't accidentally trigger the toast-level handler, and the toast auto-closes after the handler runs.
 
 ### Is it SSR-safe?
 
-Yes. The library guards against missing document access during server rendering.
+Yes. The library guards against missing document access during server rendering. If `document` or `document.body` is unavailable (for example during SSR in Next.js, Nuxt, or Angular Universal), `showToast()` safely returns `null` instead of crashing.
+
+### How do I handle multiple toast instances or SPA route changes?
+
+The library reuses a single shared container, so you can create multiple `ToastNotification` instances without duplicating the DOM container. For SPA route changes or app teardown, call `destroy()` to remove the container and clear all active toasts, or `clearAll()` to remove all toasts while keeping the container available.
+
+### Can I disable animations?
+
+Yes. Set `animation: false` in the toast options to disable the slide-in animation. Positioning and layout remain intact — only the keyframe animation is skipped.
+
+### Can I access default colors or animations programmatically?
+
+Yes. The library exposes public utility methods: `getColor(type)` returns the default color for a toast type, `getAnimation(position)` returns the slide-in CSS animation value for a position, and `getActionButtonColor(type)` returns the default action button color for a toast type — useful for aligning custom styling with the library's defaults.
+
+### Is the close button accessible?
+
+Yes. The close button is a real `<button>` element with `type="button"` and an `aria-label="Close notification"`, making it accessible to screen readers and keyboard users.
+
+### What browsers are supported?
+
+The library targets modern evergreen browsers: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+, Opera 67+, and Samsung Internet 12+. Internet Explorer and pre-2019 legacy browsers are not supported.
+
+### How do I import the library?
+
+```ts
+import ToastNotification from '@codewithrajat/rm-toast-notification';
+```
+
+The package ships as an ESM module with TypeScript type definitions included, so autocomplete and type checking work out of the box.
 
 ---
 
