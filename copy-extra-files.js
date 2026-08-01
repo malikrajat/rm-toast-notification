@@ -11,5 +11,5 @@ fs.copySync('LICENSE', `${dist}LICENSE`);
 fs.copySync('README.md', `${dist}/README.md`);
 fs.copySync('.npmignore', `${dist}/.npmignore`);
 fs.copySync('.gitignore', `${dist}/.gitignore`);
-fs.copySync('src/assets', `${dist}assets`);
+fs.copySync('package.json', `${dist}package.json`);
 console.log('Extra files copied successfully!');
