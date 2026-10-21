@@ -1,14 +1,13 @@
 {
-    "compilerOptions": {
-      "outDir": "./dist",
-      "rootDir": "./src",
-      "module": "CommonJS",
-      "target": "ES2019",
-      "strict": true,
-      "esModuleInterop": true,
-      "declaration": true
-    },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "dist"]
-  }
-  
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "CommonJS",
+    "target": "ES2019",
+    "strict": true,
+    "esModuleInterop": true,
+    "declaration": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

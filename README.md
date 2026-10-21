@@ -15,10 +15,23 @@
   <img src="https://img.shields.io/badge/Tests-covered-blue" alt="Tests">
   <img src="https://img.shields.io/badge/Coverage-90%25-success" alt="Coverage">
   <img src="https://img.shields.io/badge/A11y-WCAG%202.1-success" alt="Accessibility compliant">
-  <img src="https://img.shields.io/badge/Dependencies-none-success" alt="No dependencies">
+  <img src="https://img.shields.io/badge/Dependencies-DOMPurify-orange" alt="Single runtime dependency">
   <img src="https://img.shields.io/npm/last-update/@codewithrajat/rm-toast-notification" alt="Last update">
   <img src="https://img.shields.io/badge/Maintained-yes-success" alt="Maintained">
   <img src="https://img.shields.io/badge/SemVer-compliant-blue" alt="SemVer">
+  <a href="https://github.com/malikrajat/rm-toast-notification/actions/workflows/ci.yml"><img src="https://github.com/malikrajat/rm-toast-notification/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+  <a href="./docs/README.md"><img src="https://img.shields.io/badge/Docs-20%20guides-blue" alt="Documentation"></a>
+  <a href="./examples/README.md"><img src="https://img.shields.io/badge/Examples-10%20recipes-blueviolet" alt="Examples"></a>
+</p>
+
+
+<p align="center">
+  <a href="#documentation--guides"><strong>Documentation</strong></a> ·
+  <a href="#examples"><strong>Examples</strong></a> ·
+  <a href="#quick-start"><strong>Quick Start</strong></a> ·
+  <a href="#api">API</a> ·
+  <a href="./CHANGELOG.md">Changelog</a> ·
+  <a href="./docs/contributing.md">Contributing</a>
 </p>
 
 
@@ -46,6 +59,8 @@ Built with security and accessibility as first-class concerns, the library sanit
 
 ## Table of Contents
 
+- [Documentation & Guides](#documentation--guides)
+- [Examples](#examples)
 - [Features](#features)
 - [Live Demo & Playground](#live-demo--playground)
 - [Installation](#installation)
@@ -55,11 +70,65 @@ Built with security and accessibility as first-class concerns, the library sanit
 - [Security](#security)
 - [FAQ](#faq)
 - [Browser Support](#browser-support)
+- [Testing](#testing)
+- [Contributing](#contributing)
 - [Changelog](#changelog)
 - [License](#license)
 - [Support & Community](#support--community)
 - [Author](#author)
 - [Other Libraries](#other-libraries)
+
+---
+
+## Documentation & Guides
+
+The full documentation lives in [`docs/`](./docs/README.md) — twenty guides covering everything
+from installation to architecture and troubleshooting.
+
+| Guide | What it covers |
+|---|---|
+| [Documentation index](./docs/README.md) | Navigation for every guide in `docs/` |
+| [Prerequisites](./docs/prerequisites.md) | Node, pnpm, browser, and environment requirements |
+| [Installation](./docs/installation.md) | npm, pnpm, yarn, CDN/ESM, and TypeScript setup |
+| [Quick Start](./docs/quick-start.md) | The smallest working example and the first five things to change |
+| [Configuration](./docs/configuration.md) | Every option, its type, default, and exact behavior |
+| [Advanced Configuration](./docs/advanced-configuration.md) | Presets, wrappers, theming, reduced motion, stacking, diagnostics |
+| [API Reference](./docs/api-reference.md) | Class, methods, exported types, and exported utility functions |
+| [Framework Integration](./docs/frameworks.md) | Vanilla JS, React, Angular, Vue, Svelte, and SSR notes |
+| [Browser Support](./docs/browser-support.md) | Supported versions, required web platform features, mobile notes |
+| [Architecture](./docs/architecture.md) | Container, rendering pipeline, timers, and lifecycle internals |
+| [Security](./docs/security.md) | XSS, CSS injection, URL/color validation, sanitization pipeline |
+| [Accessibility](./docs/accessibility.md) | ARIA setup, contrast, keyboard, reduced motion |
+| [Performance Optimization](./docs/performance-optimization.md) | Bundle size, timers, DOM reuse, high-frequency toasts |
+| [Best Practices](./docs/best-practices.md) | Opinionated rules for real applications |
+| [Testing Guide](./docs/testing.md) | Jest/Vitest setup, fake timers, coverage strategy |
+| [Extending the Library](./docs/extending.md) | Subclassing, wrapping, new toast types, custom builds |
+| [Project Structure](./docs/project-structure.md) | Folder-by-folder map and the publish pipeline |
+| [Changelog and Versioning](./docs/changelog.md) | SemVer policy and how releases are documented |
+| [Contributing](./docs/contributing.md) | Local setup, quality gates, PR checklist |
+| [GitHub Actions Policy](./GITHUB_ACTIONS.md) | Which branches and tags may run CI, and how to change it |
+| [FAQ](./docs/faq.md) | Short answers to common questions |
+| [Troubleshooting](./docs/troubleshooting.md) | Symptom → cause → fix for real-world failures |
+
+---
+
+## Examples
+
+Ten copy-paste-ready recipes live in [`examples/`](./examples/README.md), ordered from basic to
+advanced.
+
+| # | Example | What it demonstrates |
+|---|---|---|
+| 1 | [Basic usage](./examples/01-basic.md) | One instance, four types, four positions, first options |
+| 2 | [Async lifecycle](./examples/02-async-lifecycle.md) | Loading → success/failure, progress updates, cancellation |
+| 3 | [Advanced options](./examples/03-advanced.md) | Presets, wrapper services, ARIA, stack caps, custom timers |
+| 4 | [Filtering and deduplication](./examples/04-filtering-and-deduplication.md) | Dedupe, cooldowns, batching, priorities, queueing |
+| 5 | [Failure handling](./examples/05-failure-handling.md) | Retryable errors, offline, global handlers, safe wording |
+| 6 | [Custom styling](./examples/06-custom-styling.md) | Brand palettes, dark mode, CSS overrides, motion |
+| 7 | [Action buttons](./examples/07-action-buttons.md) | Retry, undo, confirm, progress, keyboard support |
+| 8 | [Framework integration](./examples/08-framework-integration.md) | React, Angular, Vue, Svelte, vanilla |
+| 9 | [SSR and teardown](./examples/09-ssr-and-teardown.md) | Next.js, Nuxt, Angular Universal, cleanup rules |
+| 10 | [Testing toasts](./examples/10-testing.md) | Jest/Vitest setup, fake timers, interaction and SSR tests |
 
 ---
 
@@ -274,7 +343,7 @@ toast.destroy();
 Create a service and reuse it.
 
 ```javascript
-import ToastNotification from 'rm-toast-notification';
+import ToastNotification from '@codewithrajat/rm-toast-notification';
 
 const toastService = new ToastNotification();
 
@@ -326,6 +395,10 @@ toastService.showToast({
 });
 ```
 
+➡️ More scenarios, including async lifecycles, filtering and deduplication, failure handling,
+custom styling, action buttons, framework recipes, SSR cleanup, and testing:
+**[examples/](./examples/README.md)**.
+
 ---
 
 ## API
@@ -351,7 +424,7 @@ const toast = new ToastNotification();
 |----------------|------------|-----------------------------------------------------------------------------------------------------------------|-------------|
 | `type`         | `string`   | Notification type. Available options: `success`, `error`, `warning`, `info`.                                    | `info`      |
 | `position`     | `string`   | Position of the toast on the screen. Available options: `top-left`, `top-right`, `bottom-left`, `bottom-right`. | `top-right` |
-| `duration`     | `number`   | Duration in milliseconds to show the toast. Set to `null` for a permanent toast.                                | `3000`      |
+| `duration`     | `number`   | Duration in milliseconds to show the toast. Set to `0` (or a negative number) for a permanent toast. `null`/`undefined` uses the 3000 ms default. | `3000`      |
 | `header`       | `string`   | The header text for the notification. (Optional)                                                                |             |
 | `body`         | `string`   | The body content. Can be plain text or sanitized HTML.                                                          |             |
 | `footer`       | `string`   | The footer text. (Optional)                                                                                     |             |
@@ -374,12 +447,55 @@ This package is built with security in mind.
 - Custom colors are restricted to safe formats
 - Text values are inserted using `textContent` where appropriate
 
+📖 Full threat model, sanitization pipeline, and the exact rules applied to `body`, `logo`, and
+`color`: **[docs/security.md](./docs/security.md)**.
+
+---
+
+## Testing
+
+Unit tests run in `jest-environment-jsdom` and cover construction, options, duration semantics,
+content and sanitization, interactions, lifecycle methods, the exported helpers, and SSR behavior.
+Coverage is gated at **90%** for statements, branches, functions, and lines.
+
+```bash
+pnpm install
+pnpm test              # run the suite
+pnpm run test:coverage # run with the 90% coverage gate
+```
+
+📖 Setup details and test patterns for your own project:
+**[docs/testing.md](./docs/testing.md)** · **[examples/10-testing.md](./examples/10-testing.md)**.
+
+---
+
+## Contributing
+
+Contributions are welcome: bug reports, docs improvements, tests, and framework recipes.
+
+```bash
+pnpm install
+pnpm run check          # Biome formatting + linting
+pnpm run typecheck      # tsc --noEmit for library and tests
+pnpm run test:coverage  # Jest with the 90% coverage gate
+pnpm run build          # emit dist/ and copy metadata files
+```
+
+CI runs the same steps in [`.github/workflows/ci.yml`](./.github/workflows/ci.yml), but only for
+pushes to `main` and for `v*` tags created from `main` — other branches never start a run. The policy,
+and exactly how to allow more branches or tags, is documented in
+**[GITHUB_ACTIONS.md](./GITHUB_ACTIONS.md)**. Full contribution guide:
+**[docs/contributing.md](./docs/contributing.md)**.
+
 
 ---
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md)  for release history and updates.
+See [CHANGELOG.md](CHANGELOG.md) for release history and updates.
+
+Versioning policy, how entries are written, and how a release is cut:
+**[docs/changelog.md](./docs/changelog.md)**.
 
 ---
 
@@ -413,6 +529,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 ## FAQ
+
+Prefer a longer format? The extended FAQ lives in **[docs/faq.md](./docs/faq.md)**, and
+symptom-by-symptom fixes are in **[docs/troubleshooting.md](./docs/troubleshooting.md)**.
 
 ### What is rm-toast-notification?
 
@@ -493,6 +612,9 @@ The library targets modern browsers and works well in:
 - Firefox
 - Safari
 - Mobile browsers with modern JavaScript support
+
+📖 Exact minimum versions, feature baseline, mobile and CSP notes:
+**[docs/browser-support.md](./docs/browser-support.md)**.
 
 ---
 
@@ -587,10 +709,16 @@ Need assistance? We're here to help!
 | Bug Reports | [Report Bug](https://github.com/malikrajat/rm-toast-notification/issues/new?template=bug_report.md) | Technical issues |
 | Feature Requests | [Request Feature](https://github.com/malikrajat/rm-toast-notification/issues/new?template=feature_request.md) | New features |
 | Discussions | [Join Discussion](https://github.com/malikrajat/rm-toast-notification/discussions) | General questions |
-| Email | [mr.rajatmalik@gmail.com](mailto:mr.rajatmalik@gmail.com?subject=rm-toast-notification%20Support) | Direct support |
+| Email | [support@rajatmalik.dev](mailto:support@rajatmalik.dev?subject=rm-toast-notification%20Support) | Direct support |
 
 ### Documentation
 
+- [Documentation index](./docs/README.md) — every guide in `docs/`
+- [Examples](./examples/README.md) — ten copy-paste recipes
+- [Configuration](./docs/configuration.md) · [API Reference](./docs/api-reference.md)
+- [Architecture](./docs/architecture.md) · [Security](./docs/security.md) · [Accessibility](./docs/accessibility.md)
+- [Testing](./docs/testing.md) · [Contributing](./docs/contributing.md) · [Troubleshooting](./docs/troubleshooting.md)
+- [GitHub Actions branch policy](./GITHUB_ACTIONS.md)
 - [GitHub Repository](https://github.com/malikrajat/rm-toast-notification)
 - [npm Package](https://www.npmjs.com/package/@codewithrajat/rm-toast-notification)
 - [Live Demo](https://stackblitz.com/edit/vitejs-vite-22yb4jvh)
@@ -740,7 +868,7 @@ Author of 10+ open‑source libraries and 100+ technical articles, driving innov
 ### GET IN TOUCH
 
 - Portfolio:  [rajatmalik.dev](https://rajatmalik.dev)
-- Email:      [mr.rajatmalik@gmail.com](mailto:mr.rajatmalik@gmail.com)
+- Email:      [support@rajatmalik.dev](mailto:support@rajatmalik.dev)
 - LinkedIn:   [errajatmalik](https://linkedin.com/in/errajatmalik)
 - GitHub:     [@malikrajat](https://github.com/malikrajat)
 - npm:        [rajatmalik](https://www.npmjs.com/~rajatmalik)

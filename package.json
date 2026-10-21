@@ -7,9 +7,21 @@
   "module": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc  && node copy-extra-files.js",
-    "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "build": "tsc && node copy-extra-files.js",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "check:ci": "biome ci .",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "verify": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test:coverage && pnpm run build",
+    "prepack": "npm run build"
   },
   "keywords": [
     "toast",
@@ -396,19 +408,19 @@
   ],
   "author": {
     "name": "Rajat Malik",
-    "email": "mr.rajatmalik@gmail.com",
+    "email": "support@rajatmalik.dev",
     "url": "https://www.rajatmalik.dev/"
   },
   "contributors": [
     {
       "name": "Rajat Malik",
-      "email": "mr.rajatmalik@gmail.com"
+      "email": "support@rajatmalik.dev"
     }
   ],
   "maintainers": [
     {
       "name": "Rajat Malik",
-      "email": "mr.rajatmalik@gmail.com"
+      "email": "support@rajatmalik.dev"
     }
   ],
   "homepage": "https://github.com/malikrajat/rm-toast-notification#readme",
@@ -418,16 +430,20 @@
   },
   "bugs": {
     "url": "https://github.com/malikrajat/rm-toast-notification/issues",
-    "email": "mr.rajatmalik@gmail.com"
+    "email": "support@rajatmalik.dev"
   },
   "devDependencies": {
-    "eslint": "^9.16.0",
+    "@biomejs/biome": "^2.5.14",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.1",
+    "fs-extra": "^11.3.5",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "dompurify": "^3.2.2",
-    "fs-extra": "^11.3.5"
+    "dompurify": "^3.2.2"
   },
   "publishConfig": {
     "access": "public",
@@ -453,6 +469,44 @@
   "directories": {
     "lib": "./src",
     "doc": "./docs"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.test.json"
+        }
+      ]
+    },
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "json-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
   },
   "packageManager": "pnpm@10.11.1",
   "license": "MIT",
